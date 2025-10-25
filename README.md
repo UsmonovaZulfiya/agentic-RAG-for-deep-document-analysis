@@ -1,18 +1,14 @@
-# 🧠 Agentic RAG for Deep Document Analysis
+# Agentic RAG for Deep Document Analysis
 *Reproducibility of “Building Three Pipelines to Select the Right LLMs for RAG, Multi-Agent Systems, and Vision”*
 
----
+## Overview
 
-## 📖 Overview
-
-This repository reproduces and extends the experiment described in [Fareed Khan’s LevelUp article](https://levelup.gitconnected.com/building-three-pipelines-to-select-the-right-llms-for-rag-multi-agent-systems-and-vision-3e47e0563b76).  
+This repository reproduces the experiment described in [Fareed Khan’s LevelUp article](https://levelup.gitconnected.com/building-three-pipelines-to-select-the-right-llms-for-rag-multi-agent-systems-and-vision-3e47e0563b76).  
 The project implements an **Agentic Retrieval-Augmented Generation (RAG)** pipeline that uses **hierarchical chunking**, **multi-step reasoning**, and **model routing** to enable deep question answering over complex documents.
 
 The pipeline simulates how autonomous agents can navigate large legal or technical documents — selecting relevant text, refining search depth, and synthesizing structured answers with citations.
 
----
-
-## ⚙️ Core Features
+## Core Features
 
 - **Hierarchical Chunking** – recursively splits documents into semantically meaningful segments using sentence-level boundaries.  
 - **Agentic Navigation** – a router model iteratively selects the most relevant text chunks based on a question.  
@@ -22,7 +18,7 @@ The pipeline simulates how autonomous agents can navigate large legal or technic
 
 ---
 
-## 🧩 Pipeline Architecture
+## Pipeline Architecture
 
 1. **Document Loading** – Fetch a PDF (e.g., the *Trademark Trial and Appeal Board Manual of Procedure*, TBMP) and extract its text.  
 2. **Hierarchical Chunking** – Divide the text into multi-level chunks for scalable navigation.  
@@ -31,9 +27,7 @@ The pipeline simulates how autonomous agents can navigate large legal or technic
 5. **Answer Synthesis** – A high-capacity model (e.g., `meta-llama/Llama-3.3-70B-Instruct`) generates a structured answer with citations.  
 6. **Evaluation (optional)** – A separate model (e.g., `deepseek-ai/DeepSeek-V3`) can assess answer quality.
 
----
-
-## 🧰 Technology Stack
+## Technology Stack
 
 | Component | Purpose | Example Model / Library |
 |---|---|---|
@@ -44,53 +38,6 @@ The pipeline simulates how autonomous agents can navigate large legal or technic
 | **TQDM** | Progress monitoring | `tqdm.auto` |
 | **OpenAI Python SDK** | Unified API interface | `openai.OpenAI()` |
 
----
-
-## 🧪 Reproducibility Steps
-
-### 1) Clone the repository
-
-```bash
-git clone https://github.com/<your-username>/agentic-rag-reproduction.git
-cd agentic-rag-reproduction
-```
-
-### 2) Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-Or install manually:
-
-```bash
-pip install openai pypdf nltk tqdm transformers pandas requests
-```
-
-### 3) Run the script
-
-```bash
-python agentic_rag_for_question_answering.py
-```
-
-Or open the notebook version in **Google Colab**.
-
-### 4) Set up credentials
-
-- Get your **Nebius AI API key** from <https://studio.nebius.ai>.  
-- Log in to **Hugging Face** if using gated models:
-
-```bash
-huggingface-cli login
-```
-
-### 5) Observe the output
-
-- The script prints chunking statistics, selected paragraphs, and a structured JSON answer with citations.  
-- Metrics (latency, token counts, etc.) are stored in `metrics_log`.
-
----
-
 ## 📈 Example Output
 
 ```text
@@ -100,18 +47,6 @@ specify the discovery requests at issue, and comply with standard formatting (ID
 
 --- CITATIONS ---
 ['1.3.5', '1.3.9']
-```
-
----
-
-## 📂 Repository Structure
-
-```text
-├── agentic_rag_for_question_answering.py   # Full reproducible script
-├── untitled6.py                            # Cleaned-up variant for testing
-├── requirements.txt                        # Dependency list
-├── README.md                               # Project overview (this file)
-└── /outputs/                               # Optional: logs and generated results
 ```
 
 ---
@@ -128,30 +63,16 @@ It can serve as a foundation for future work on:
 
 - Multi-agent retrieval coordination  
 - RAG evaluation benchmarks  
-- Adaptive routing and answer aggregation strategies  
-
----
-
-## 🔬 Citation
+- Adaptive routing and answer aggregation strategies
+  
+## Citation
 
 If you use this code in your own research, please cite the original source:
 
 > Fareed Khan, *“Building Three Pipelines to Select the Right LLMs for RAG, Multi-Agent Systems, and Vision”*,  
 > LevelUp, 2024. <https://levelup.gitconnected.com/building-three-pipelines-to-select-the-right-llms-for-rag-multi-agent-systems-and-vision-3e47e0563b76>
 
----
-
-## 💭 Author Notes
+## Author Notes
 
 This repository was created as part of a **reproducibility study** on RAG pipelines and agentic LLM architectures.  
 It aims to provide both an educational resource and a stepping stone for deeper experiments in **multi-agent retrieval**, **LLM benchmarking**, and **explainable AI**.
-
----
-
-## 🪴 Future Extensions
-
-- Add multi-document retrieval and memory pooling  
-- Integrate vector-based chunk selection  
-- Evaluate answer consistency using a critic LLM  
-- Visualize reasoning tree for transparency  
-
